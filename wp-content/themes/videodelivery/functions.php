@@ -395,6 +395,67 @@ add_shortcode('html5_shortcode_demo_2', 'html5_shortcode_demo_2'); // Place [htm
 	Custom Post Types
 \*------------------------------------*/
 
+//Adicionandos posts customizados
+function add_post_types()
+{
+
+    register_post_type('quem-somos',
+        array(
+            'labels' => array(
+                'name' => __('Quem Somos'),
+                'singular_name' => __('Quem Somos')
+            ),
+            'public' => true,
+            'menu_position' => 5,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'quem-somos'),
+        )
+    );
+
+    register_post_type('banner-home',
+        array(
+            'labels' => array(
+                'name' => __('Banners da home'),
+                'singular_name' => __('Banner')
+            ),
+            'public' => true,
+            'menu_position' => 6,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'banner-home'),
+        )
+    );
+
+    register_post_type('contatos',
+        array(
+            'labels' => array(
+                'name' => __('Contatos'),
+                'singular_name' => __('contato')
+            ),
+            'public' => true,
+            'menu_position' => 7,
+            'has_archive' => true,
+            'rewrite' => array('slug' => 'contato'),
+        )
+    );
+
+}
+
+add_action('init', 'add_post_types');
+
+
+function create_custom_taxonomy() {
+
+    register_taxonomy(
+        'categoria_blog',
+        'blog',
+        array(
+            'label' => 'Categorias',
+            'hierarchical' => true,
+        )
+    );
+
+}
+add_action( 'init', 'create_custom_taxonomy' );
 
 /*------------------------------------*\
 	ShortCode Functions
